@@ -26,9 +26,20 @@ ActiveRecord::Schema.define(version: 0) do
     t.integer "handicap"
     t.integer "par"
     t.integer "yards"
+    t.string  "handicap_validation"
   end
 
   add_index "holes", ["course_id"], name: "index_holes_on_course_id"
+
+  create_table "holescores", force: :cascade do |t|
+    t.integer "hole_id"
+    t.integer "round_id"
+    t.integer "score_gross"
+    t.integer "score_net"
+  end
+
+  add_index "holescores", ["hole_id"], name: "index_holescores_on_hole_id"
+  add_index "holescores", ["round_id"], name: "index_holescores_on_round_id"
 
   create_table "leagues", force: :cascade do |t|
     t.string "name"
@@ -57,6 +68,7 @@ ActiveRecord::Schema.define(version: 0) do
     t.integer "course_handicap"
     t.integer "score_gross"
     t.integer "score_net"
+    t.integer "strokes_earned"
   end
 
   add_index "rounds", ["course_id"], name: "index_rounds_on_course_id"

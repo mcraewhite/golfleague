@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The Golf League</title>
+  <!-- Logo Font -->
+  <link href="http://fonts.googleapis.com/css?family=Luckiest+Guy" rel="stylesheet" type="text/css">
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.2/cerulean/bootstrap.min.css">
+  <!-- Font Awesome -->
+  <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <!-- Bootstrap -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+  <div class="container">
+
+    <%= form_tag sessions_path, class: "form-signin" do %>
+      <h1>The Golf League</h1>
+      <h2 class="form-signin-heading">Please sign in</h2>
+      <%= email_field_tag :email, "", class: "form-control", placeholder: "Email" %>
+      <%= password_field_tag :password, "", class: "form-control", placeholder: "Password" %>
+      <%= button_tag "Sign In", class: "btn btn-lg btn-primary btn-block" %>
+      <%= link_to "Create New Account", new_user_path %>
+    <% end %>
+
+  </div>
+</body>
+</html>

@@ -7,7 +7,9 @@ Course:
 Hole:
   course_id: integer
   number: integer
+  number_validation: string
   handicap: integer
+  handicap_validation: string
   par: integer
   yards: integer
 
@@ -15,6 +17,13 @@ Round:
   course_id: integer
   player_id: integer
   course_handicap: integer
+  strokes_earned: integer
+  score_gross: integer
+  score_net: integer
+
+Holescore:
+  hole_id: integer
+  round_id: integer
   score_gross: integer
   score_net: integer
 
