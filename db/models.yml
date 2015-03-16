@@ -16,6 +16,7 @@ Hole:
 Round:
   course_id: integer
   player_id: integer
+  league_id: integer
   date: date
   datetime: datetime
   course_handicap: integer
@@ -37,6 +38,7 @@ Player:
 Playerleague:
   player_id: integer
   league_id: integer
+  league_points: integer
 
 League:
   name: string

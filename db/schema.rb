@@ -50,6 +50,7 @@ ActiveRecord::Schema.define(version: 0) do
   create_table "playerleagues", force: :cascade do |t|
     t.integer "player_id"
     t.integer "league_id"
+    t.integer "league_points"
   end
 
   add_index "playerleagues", ["league_id"], name: "index_playerleagues_on_league_id"
@@ -72,9 +73,11 @@ ActiveRecord::Schema.define(version: 0) do
     t.integer  "strokes_earned"
     t.date     "date"
     t.datetime "datetime"
+    t.integer  "league_id"
   end
 
   add_index "rounds", ["course_id"], name: "index_rounds_on_course_id"
+  add_index "rounds", ["league_id"], name: "index_rounds_on_league_id"
   add_index "rounds", ["player_id"], name: "index_rounds_on_player_id"
 
   create_table "users", force: :cascade do |t|

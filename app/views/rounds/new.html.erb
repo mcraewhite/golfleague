@@ -18,5 +18,9 @@
     <%= form.label :course_id, "Select Course" %>
     <%= form.collection_radio_buttons :course_id, Course.all, :id, :name, {}, {class: "form-control"} %>
   </div>
+  <div class="form-group">
+    <%= form.label :league_id, "Select League" %>
+    <%= form.collection_radio_buttons :league_id, League.all, :id, :name, {}, {class: "form-control"} %>
+  </div>
   <%= form.button 'Start New Round', class: "btn btn-success" %>
 <% end %>

@@ -6,13 +6,13 @@
   </span>
 </h1>
 
+<h2>Leaderboard:</h2>
 <div class="container-fluid">
   <div class="row">
-    League Members:
-    <% @players.each do |player| %>
+    <% @playerleagues.each do |playerleague| %>
       <div class="col-xs-3 col-md-3">
-          <h3><%= link_to player.name, player_path(player) %>:</h3>
-          <p><strong>Handicap Index:</strong> <%= player.handicap_index %></p>
+          <h3><%= playerleague.player.name, player_path(playerleague.player) %>: </br><u><%= playerleague.league_points %> points</u></h3>
+          <p><strong>Handicap Index:</strong> <%= playerleague.player.handicap_index %></p>
       </div>
     <% end %>
   </div>

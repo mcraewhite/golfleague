@@ -58,9 +58,13 @@ linder = Player.create(user_id: linder_user.id, name: "Matt Linder", handicap_in
 joe = Player.create(user_id: joe_user.id, name: "Joe Monocchio", handicap_index: 11.8)
 white = Player.create(user_id: white_user.id, name: "Adam White", handicap_index: 14.7)
 
+# Create League
+puts "Creating leagues"
+gladiator = League.create(name: "The Gladiator Cup", logo: nil)
+
 # Create Rounds
 puts "Creating rounds"
-garner_round = Round.create(course_id: sanctuary_course.id, player_id: garner.id, date: Date.current, datetime: DateTime.current, course_handicap: 13, strokes_earned: 0, score_gross: 85, score_net: 85)
+garner_round = Round.create(course_id: sanctuary_course.id, player_id: garner.id, league_id: gladiator.id, date: Date.current, datetime: DateTime.current, course_handicap: 13, strokes_earned: 0, score_gross: 85, score_net: 85)
 #linder_round = Round.create(course_id: sanctuary_course.id, player_id: linder.id, date: Date.current, datetime: DateTime.current, course_handicap: 14, strokes_earned: 1,  score_gross: 0, score_net: 0)
 #joe_round = Round.create(course_id: sanctuary_course.id, player_id: joe.id, date: Date.current, datetime: DateTime.current, course_handicap: 13, strokes_earned: 0,  score_gross: 0, score_net: 0)
 #white_round = Round.create(course_id: sanctuary_course.id, player_id: white.id, date: Date.current, datetime: DateTime.current, course_handicap: 16, strokes_earned: 3,  score_gross: 0, score_net: 0)
@@ -86,15 +90,11 @@ Holescore.create(hole_id: sanctuary_16.id, round_id: garner_round.id, score_gros
 Holescore.create(hole_id: sanctuary_17.id, round_id: garner_round.id, score_gross: 7, score_net: 7)
 Holescore.create(hole_id: sanctuary_18.id, round_id: garner_round.id, score_gross: 6, score_net: 6)
 
-# Create League
-puts "Creating leagues"
-gladiator = League.create(name: "The Gladiator Cup", logo: nil)
-
 # Create Playerleagues
 puts "Creating playerleagues"
-Playerleague.create(player_id: garner.id, league_id: gladiator.id)
-Playerleague.create(player_id: linder.id, league_id: gladiator.id)
-Playerleague.create(player_id: joe.id, league_id: gladiator.id)
-Playerleague.create(player_id: white.id, league_id: gladiator.id)
+Playerleague.create(player_id: garner.id, league_id: gladiator.id, league_points: 0)
+Playerleague.create(player_id: linder.id, league_id: gladiator.id, league_points: 0)
+Playerleague.create(player_id: joe.id, league_id: gladiator.id, league_points: 0)
+Playerleague.create(player_id: white.id, league_id: gladiator.id, league_points: 0)
 
 
