@@ -13,6 +13,7 @@
             <%= link_to round.course.name + " " + round.date.to_s, round %>
             <span class="pull-right">
               <%= link_to "Edit", edit_round_path(round), class: 'btn btn-xs btn-success' %>
+              <%= link_to "Delete", round_path(round), method: :delete, data: { confirm: 'Are you  sure?' }, class: 'btn btn-xs btn-danger' %>
             </span>
           </h4>
           <p><strong>Player:</strong> <%= round.player.name %></p>
