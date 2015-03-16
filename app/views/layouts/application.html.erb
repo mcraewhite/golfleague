@@ -84,10 +84,7 @@
             </li>
             <li>
               <% if current_user %>
-                <a href="#">
-                  <i class="fa fa-user"></i>
-                  My Account
-                </a>
+                <%= link_to "My Account", player_path(current_user) %>
               <% else %>
                 <%= link_to "Log In", login_path %>
               <% end %>

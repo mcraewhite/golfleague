@@ -8,6 +8,7 @@ class PlayersController < ApplicationController
   def show
     @players = Player.all
     @player = Player.find_by(id: params["id"])
+    @playerleagues = @player.playerleagues
   end
 
   def new

@@ -19,7 +19,7 @@ class LeaguesController < ApplicationController
     league_params = params.require(:league).permit!
     @league = League.create(league_params)
     if @league.valid?
-      redirect_to leagues_path, notice: "A new league has been added to the database."
+      redirect_to league_path(@league), notice: "A new league has been added to the database."
     else
       puts "Failure!"
       flash[:alert] = "Something went wrong."
@@ -36,7 +36,7 @@ class LeaguesController < ApplicationController
     @league = League.find_by(id: params["id"])
     @league.update(league_params)
     if @league.valid?
-      redirect_to leagues_path, notice: "League edited successfully."
+      redirect_to league_path(@league), notice: "League edited successfully."
     else
       puts "Failure!"
       flash[:alert] = "Something went wrong."

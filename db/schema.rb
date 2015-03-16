@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(version: 0) do
     t.integer "par"
     t.integer "yards"
     t.string  "handicap_validation"
+    t.string  "number_validation"
   end
 
   add_index "holes", ["course_id"], name: "index_holes_on_course_id"

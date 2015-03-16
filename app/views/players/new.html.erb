@@ -1,30 +1,22 @@
-<% if @course.errors.any? %>
+<% if @player.errors.any? %>
   <div class="alert alert-warning">
-    <h2>Some errors kept this course from being saved:</h2>
+    <h2>Some errors kept this player from being saved:</h2>
     <ul>
-      <% @course.errors.full_messages.each do |message| %>
+      <% @player.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
     </ul>
   </div>
 <% end %>
 
-<%= form_for @course do |form| %>
+<%= form_for @player do |form| %>
   <div class="form-group">
     <%= form.label :name %>
     <%= form.text_field :name, class: "form-control" %>
   </div>
   <div class="form-group">
-    <%= form.label :logo, "Logo (enter the filename)" %>
-    <%= form.text_field :logo, class: "form-control" %>
+    <%= form.label :handicap_index, "Handicap Index" %>
+    <%= form.text_field :handicap_index, class: "form-control" %>
   </div>
-  <div class="form-group">
-    <%= form.label :slope %>
-    <%= form.text_field :slope, class: "form-control" %>
-  </div>
-  <div class="form-group">
-    <%= form.label :rating %>
-    <%= form.text_field :rating, class: "form-control" %>
-  </div>
-  <%= form.button 'Create Course', class: "btn btn-success" %>
+  <%= form.button 'Edit Player', class: "btn btn-success" %>
 <% end %>

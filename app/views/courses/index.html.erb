@@ -8,7 +8,7 @@
   <% @courses.each do |course| %>
     <div class="col-sm-6 col-md-4">
       <div class="thumbnail">
-        <% if course.logo.nil? %>
+        <% if course.logo.nil? or course.logo == "" %>
           <%= link_to image_tag("default_course.jpg", width: 100), course %>
         <% else %>
           <%= link_to image_tag(course.logo, width: 100), course %>

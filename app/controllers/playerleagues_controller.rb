@@ -1,11 +1,14 @@
 class PlayerleaguesController < ApplicationController
+  skip_before_action :require_user, only: [:index, :show]
 
   def index
     @playerleagues = Playerleague.all
   end
 
   def show
+    @playerleagues = Playerleague.all
     @playerleague = Playerleague.find_by(id: params["id"])
+    @players = @playerleague.players
   end
 
   def new
@@ -16,11 +19,10 @@ class PlayerleaguesController < ApplicationController
     playerleague_params = params.require(:playerleague).permit!
     @playerleague = Playerleague.create(playerleague_params)
     if @playerleague.valid?
-      @player = Player.create(playerleague_id: @playerleague.id, seat_id: nil, table_id: nil, is_dealer: false, chips: 1000, bet: nil)
-      redirect_to "/login", notice: "Welcome to The Golf League!"
+      redirect_to leagues_path, notice: "A new playerleague has been added to the database."
     else
       puts "Failure!"
-      flash[:alert] = "Something went wrong. Please ensure you submit a valid email address and your password is typed correctly."
+      flash[:alert] = "Something went wrong."
       render "new"
     end
   end
@@ -32,11 +34,13 @@ class PlayerleaguesController < ApplicationController
   def update
     playerleague_params = params.require(:playerleague).permit!
     @playerleague = Playerleague.find_by(id: params["id"])
+    @playerleague.update(playerleague_params)
     if @playerleague.valid?
-      redirect_to games_path, notice: "Success!"
+      redirect_to leagues_path, notice: "Playerleague edited successfully."
     else
-      flash[:alert] = "Something went wrong. Please ensure you submit a valid email address and your password is typed correctly."
-      render "edit"
+      puts "Failure!"
+      flash[:alert] = "Something went wrong."
+      render "new"
     end
   end
 

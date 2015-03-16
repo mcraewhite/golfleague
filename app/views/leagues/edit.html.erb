@@ -1,15 +1,15 @@
-<% if @course.errors.any? %>
+<% if @league.errors.any? %>
   <div class="alert alert-warning">
-    <h2>Some errors kept this course from being saved:</h2>
+    <h2>Some errors kept this league from being saved:</h2>
     <ul>
-      <% @course.errors.full_messages.each do |message| %>
+      <% @league.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
     </ul>
   </div>
 <% end %>
 
-<%= form_for @course do |form| %>
+<%= form_for @league do |form| %>
   <div class="form-group">
     <%= form.label :name %>
     <%= form.text_field :name, class: "form-control" %>
@@ -19,12 +19,8 @@
     <%= form.text_field :logo, class: "form-control" %>
   </div>
   <div class="form-group">
-    <%= form.label :slope %>
-    <%= form.text_field :slope, class: "form-control" %>
+    <%= form.label :player_ids, "Add Players" %>
+    <%= form.collection_check_boxes :player_ids, Player.all, :id, :name, {}, {class: "form-control"} %>
   </div>
-  <div class="form-group">
-    <%= form.label :rating %>
-    <%= form.text_field :rating, class: "form-control" %>
-  </div>
-  <%= form.button 'Create Course', class: "btn btn-success" %>
+  <%= form.button 'Modify League', class: "btn btn-success" %>
 <% end %>

@@ -15,11 +15,11 @@ class UsersController < ApplicationController
   end
 
   def create
-    user_params = params.require(:user).permit!
-    @user = User.create(user_params)
+    # user_params = params.require(:user).permit!
+    @user = User.create(email: params[:user][:email], password: params[:user][:password])
     if @user.valid?
-      @player = Player.create(user_id: @user.id, seat_id: nil, table_id: nil, is_dealer: false, chips: 1000, bet: nil)
-      redirect_to "/login", notice: "Welcome to The Golf League!"
+      @player = Player.create(user_id: @user.id, name: params[:user][:players][:name], handicap_index: params[:user][:players][:handicap_index])
+      redirect_to courses_path, notice: "Welcome to The Golf League!"
     else
       puts "Failure!"
       flash[:alert] = "Something went wrong. Please ensure you submit a valid email address and your password is typed correctly."
@@ -35,7 +35,7 @@ class UsersController < ApplicationController
     user_params = params.require(:user).permit!
     @user = User.find_by(id: params["id"])
     if @user.valid?
-      redirect_to games_path, notice: "Success!"
+      redirect_to courses_path, notice: "Success!"
     else
       flash[:alert] = "Something went wrong. Please ensure you submit a valid email address and your password is typed correctly."
       render "edit"
