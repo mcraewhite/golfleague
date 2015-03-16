@@ -1,0 +1,36 @@
+Course:
+  name: string
+  logo: string
+  slope: integer
+  rating: float
+
+Hole:
+  course_id: integer
+  number: integer
+  handicap: integer
+  par: integer
+  yards: integer
+
+Round:
+  course_id: integer
+  player_id: integer
+  course_handicap: integer
+  score_gross: integer
+  score_net: integer
+
+Player:
+  user_id: integer
+  name: string
+  handicap_index: float
+
+Playerleague:
+  player_id: integer
+  league_id: integer
+
+League:
+  name: string
+  logo: string
+
+User:
+  email: string
+  password_digest: string
