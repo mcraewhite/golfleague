@@ -16,6 +16,8 @@ Hole:
 Round:
   course_id: integer
   player_id: integer
+  date: date
+  datetime: datetime
   course_handicap: integer
   strokes_earned: integer
   score_gross: integer

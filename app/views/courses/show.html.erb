@@ -13,13 +13,14 @@
       <p><strong>Rating:</strong> <%= @course.rating %></p>
     </p>
   </div>
-  <% @holes.each do |hole| %>
-    <div class="col-xs-2 col-md-2">
-        <h3><%= link_to "Hole #" + hole.number.to_s, edit_course_hole_path(@course, hole) %>:</h3>
-        <p><strong>Par:</strong> <%= hole.par %></p>
-        <p><strong>Handicap:</strong> <%= hole.handicap %></p>
-        <p><strong>Yardage:</strong> <%= hole.yards %></p>
-    </div>
-  <% end %>
+  <div class="col-md-9">
+    <% @holes.each do |hole| %>
+      <div class="col-xs-2 col-md-2">
+          <h3><%= link_to "Hole #" + hole.number.to_s, edit_course_hole_path(@course, hole) %>:</h3>
+          <p><strong>Par:</strong> <%= hole.par %></p>
+          <p><strong>Handicap:</strong> <%= hole.handicap %></p>
+          <p><strong>Yardage:</strong> <%= hole.yards %></p>
+      </div>
+    <% end %>
   </div>
 </div>

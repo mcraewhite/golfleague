@@ -22,7 +22,7 @@ class CoursesController < ApplicationController
       redirect_to new_course_hole_path(@course), notice: "A new course has been added to the database. Please add holes to the course."
     else
       puts "Failure!"
-      flash[:alert] = "Something went wrong. Please ensure you submit a valid email address and your password is typed correctly."
+      flash[:alert] = "Something went wrong."
       render "new"
     end
   end
@@ -39,7 +39,7 @@ class CoursesController < ApplicationController
       redirect_to courses_path, notice: "Course edited successfully."
     else
       puts "Failure!"
-      flash[:alert] = "Something went wrong. Please ensure you submit a valid email address and your password is typed correctly."
+      flash[:alert] = "Something went wrong."
       render "new"
     end
   end

@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   resources :leagues
   resources :users
   resources :sessions
+  resources :holescores
 
   get "/login", to: "sessions#new"
   get "/logout", to: "sessions#destroy"

@@ -64,12 +64,14 @@ ActiveRecord::Schema.define(version: 0) do
   add_index "players", ["user_id"], name: "index_players_on_user_id"
 
   create_table "rounds", force: :cascade do |t|
-    t.integer "course_id"
-    t.integer "player_id"
-    t.integer "course_handicap"
-    t.integer "score_gross"
-    t.integer "score_net"
-    t.integer "strokes_earned"
+    t.integer  "course_id"
+    t.integer  "player_id"
+    t.integer  "course_handicap"
+    t.integer  "score_gross"
+    t.integer  "score_net"
+    t.integer  "strokes_earned"
+    t.date     "date"
+    t.datetime "datetime"
   end
 
   add_index "rounds", ["course_id"], name: "index_rounds_on_course_id"

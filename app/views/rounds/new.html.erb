@@ -1,30 +1,22 @@
-<% if @course.errors.any? %>
+<% if @round.errors.any? %>
   <div class="alert alert-warning">
-    <h2>Some errors kept this course from being saved:</h2>
+    <h2>Some errors kept this round from being saved:</h2>
     <ul>
-      <% @course.errors.full_messages.each do |message| %>
+      <% @round.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
     </ul>
   </div>
 <% end %>
 
-<%= form_for @course do |form| %>
+<%= form_for @round do |form| %>
   <div class="form-group">
-    <%= form.label :name %>
-    <%= form.text_field :name, class: "form-control" %>
+    <%= form.label :player_id, "Select Player" %>
+    <%= form.collection_radio_buttons :player_id, Player.all, :id, :name, {}, {class: "form-control"} %>
   </div>
   <div class="form-group">
-    <%= form.label :logo, "Logo (enter the filename)" %>
-    <%= form.text_field :logo, class: "form-control" %>
+    <%= form.label :course_id, "Select Course" %>
+    <%= form.collection_radio_buttons :course_id, Course.all, :id, :name, {}, {class: "form-control"} %>
   </div>
-  <div class="form-group">
-    <%= form.label :slope %>
-    <%= form.text_field :slope, class: "form-control" %>
-  </div>
-  <div class="form-group">
-    <%= form.label :rating %>
-    <%= form.text_field :rating, class: "form-control" %>
-  </div>
-  <%= form.button 'Create Course', class: "btn btn-success" %>
+  <%= form.button 'Start New Round', class: "btn btn-success" %>
 <% end %>
