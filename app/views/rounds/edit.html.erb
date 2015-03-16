@@ -1,0 +1,51 @@
+<% if @round.errors.any? %>
+  <div class="alert alert-warning">
+    <h2>Some errors kept this round from being saved:</h2>
+    <ul>
+      <% @round.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<h1 class="title">
+  <%= @round.player.name + ": " + @round.course.name + ", " + @round.date.to_s %>
+  <span class="pull-right">
+    <%= link_to "Edit Round", edit_round_path(@round), class: 'btn btn-sm btn-success' %>
+  </span>
+</h1>
+
+<div class="container-fluid"><div class="row">
+  <div class="col-xs-2 col-md-2">
+    <%= form_for @round do |form| %>
+      <p><strong>Course Handicap:</strong> <%= @round.course_handicap %></p>
+      <div class="form-group">
+        <%= form.label :strokes_earned, "Strokes Given:" %>
+        <%= form.text_field :strokes_earned, class: "form-control" %>
+      </div>
+      <%= form.button 'Submit', class: "btn btn-mini btn-success" %>
+      <p><strong>Score (Gross):</strong> <%= @round.score_gross %></p>
+      <p><strong>Score (Net):</strong> <%= @round.score_net %></p>
+    <% end %>
+  </div>
+
+  <div class="col-md-9">
+    <% @round.holescores.each do |holescore| %>
+      <div class="col-xs-2 col-md-2">
+          <h4><strong><u>Hole #<%= holescore.hole.number %></u></strong></h4>
+          <p><strong>Par:</strong> <%= holescore.hole.par %></p>
+          <p><strong>Handicap:</strong> <%= holescore.hole.handicap %></p>
+          <p><strong>Yardage:</strong> <%= holescore.hole.yards %></p>
+          <%= form_for holescore do |form| %>
+            <div class="form-group">
+              <%= form.label :score_gross, "Score (Gross):" %>
+              <%= form.text_field :score_gross, class: "form-control" %>
+            </div>
+            <%= form.button 'Submit', class: "btn btn-mini btn-success" %>
+          <% end %>
+          <p><strong>Score (Net): <u><%= holescore.score_net %></u></strong></p>
+      </div>
+    <% end %>
+  </div>
+</div>
