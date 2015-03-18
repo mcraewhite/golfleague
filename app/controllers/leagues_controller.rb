@@ -24,9 +24,7 @@ class LeaguesController < ApplicationController
       @playerleague = Playerleague.find_by(player_id: player.id, league_id: @league.id)
       points_earned = 0
       player.rounds.each do |round|
-        puts "In Rounds"
         round.holescores.each do |holescore|
-          puts "In Holescores: holescore.score_net- " + holescore.score_net.to_s + ", holescore.hole.par- " + holescore.hole.par.to_s
           if holescore.score_net - holescore.hole.par == -3
             if holescore.hole.par == 4
               points_earned += hole_in_one
@@ -48,12 +46,10 @@ class LeaguesController < ApplicationController
           else
             points_earned += triple_bogey
           end
-          puts "points_earned: " + points_earned.to_s
         end
       end
 
       @playerleague.update(league_points: points_earned)
-      puts "Loop: " + points_earned.to_s
     end
   end
 

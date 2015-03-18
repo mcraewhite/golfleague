@@ -13,13 +13,18 @@ class CoursesController < ApplicationController
 
   def new
     @course = Course.new
+    18.times { @course.holes.build }
   end
 
   def create
-    course_params = params.require(:course).permit!
     @course = Course.create(course_params)
     if @course.valid?
-      redirect_to new_course_hole_path(@course), notice: "A new course has been added to the database. Please add holes to the course."
+#      i = 1
+#      @course.holes.each do |hole|
+#        hole.update(number_validation: "course" + @course.id.to_s + " - hole: " + i.to_s, handicap_validation: "course" + @course.id.to_s + " - hcap: " + hole.handicap.to_s)
+#        i += 1
+#      end
+      redirect_to courses_path, notice: "A new course has been added to the database. Please add holes to the course."
     else
       puts "Failure!"
       flash[:alert] = "Something went wrong."
@@ -32,11 +37,10 @@ class CoursesController < ApplicationController
   end
 
   def update
-    course_params = params.require(:course).permit!
     @course = Course.find_by(id: params["id"])
     @course.update(course_params)
     if @course.valid?
-      redirect_to courses_path, notice: "Course edited successfully."
+      redirect_to course_path(@course), notice: "Course edited successfully."
     else
       puts "Failure!"
       flash[:alert] = "Something went wrong."
@@ -49,5 +53,14 @@ class CoursesController < ApplicationController
     @course.destroy
     redirect_to courses_path
   end
+
+  private
+    # Using a private method to encapsulate the permissible parameters
+    # is just a good pattern since you'll be able to reuse the same
+    # permit list between create and update. Also, you can specialize
+    # this method with per-user checking of permissible attributes.
+    def course_params
+      params.require(:course).permit!
+    end
 
 end

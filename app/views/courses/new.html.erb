@@ -10,6 +10,7 @@
 <% end %>
 
 <%= form_for @course do |form| %>
+  <h3>Course Info:</h3>
   <div class="form-group">
     <%= form.label :name %>
     <%= form.text_field :name, class: "form-control" %>
@@ -26,5 +27,38 @@
     <%= form.label :rating %>
     <%= form.text_field :rating, class: "form-control" %>
   </div>
+  </br>
+  <h3>Holes:</h3>
+    <ul>
+      <!-- <% hole_num = 1 %> -->
+      <%= form.fields_for :holes do |hole| %>
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-xs-4 col-md-4">
+              <!-- <h4>Hole #<%= hole_num %>:</h4> -->
+                <!-- <%= hole.hidden_field :number, value: hole_num %> -->
+                <!-- <div class="form-group"> -->
+                  <%= hole.label :number %>
+                  <%= hole.text_field :number, class: "form-control" %> 
+                <!-- </div> -->
+                <!-- <div class="form-group"> -->
+                  <%= hole.label :yards %>
+                  <%= hole.text_field :yards, class: "form-control" %>
+                <!-- </div> -->
+                <!-- <div class="form-group"> -->
+                  <%= hole.label :par %>
+                  <%= hole.text_field :par, class: "form-control" %>
+                <!-- </div> -->
+                <!-- <div class="form-group"> -->
+                  <%= hole.label :handicap %>
+                  <%= hole.text_field :handicap, class: "form-control" %>
+                <!-- </div> -->
+                <!--
+                <%= hole.hidden_field :number_validation, value: "course" + @course.id.to_s + " - hole: " + hole_num.to_s %> -->
+              </div>
+            </div>
+          </div>
+      <% end %>
+    </ul>
   <%= form.button 'Create Course', class: "btn btn-success" %>
 <% end %>

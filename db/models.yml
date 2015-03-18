@@ -7,9 +7,9 @@ Course:
 Hole:
   course_id: integer
   number: integer
-  number_validation: string
+  #number_validation: string
   handicap: integer
-  handicap_validation: string
+  #handicap_validation: string
   par: integer
   yards: integer
 

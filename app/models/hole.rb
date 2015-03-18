@@ -7,7 +7,7 @@ class Hole < ActiveRecord::Base
   validates :yards, numericality: { only_integer: true }
   validates :handicap, numericality: { only_integer: true, greater_than_or_equal_to: 1, less_than_or_equal_to: 18 }
   validates :number, numericality: { only_integer: true, greater_than_or_equal_to: 1, less_than_or_equal_to: 18 }
-  validates :handicap_validation, uniqueness: true
-  validates :number_validation, uniqueness: true
+  validates :handicap, uniqueness: { scope: :course, message: "Each hole should have a different handicap." }
+  validates :number, uniqueness: { scope: :course, message: "Each hole should have a different number." }
 
 end
