@@ -34,8 +34,8 @@
   </div>
 
   <div class="row">
-    <div class="col-sm-4 col-md-3 col-lg-2">
-      <% @round.holescores.each do |holescore| %>
+    <div class="col-sm-3 col-md-6 col-lg-12">
+      <% @round.holescores.order(:id).each do |holescore| %>
         <div class="col-xs-2 col-md-2">
             <h4><strong><u>Hole #<%= holescore.hole.number %></u></strong></h4>
             <p><strong>Par:</strong> <%= holescore.hole.par %></p>
