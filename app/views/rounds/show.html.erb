@@ -8,24 +8,26 @@
 <h2><%= @round.player.name + ": " + @round.date.to_s %></h2>
 
 
-<div class="container-fluid"><div class="row">
-  <div class="col-md-9">
-    <p><strong>Course Handicap:</strong> <%= @round.course_handicap %></p>
-    <p><strong>Strokes Given:</strong> <%= @round.strokes_earned %></p>
-    <p><strong>Score (Gross):</strong> <%= @round.score_gross %></p>
-    <p><strong>Score (Net):</strong> <%= @round.score_net %></p>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-xs-2 col-md-2">
+      <p><strong>Course Handicap:</strong> <%= @round.course_handicap %></p>
+      <p><strong>Strokes Given:</strong> <%= @round.strokes_earned %></p>
+      <p><strong>Score (Gross):</strong> <%= @round.score_gross %></p>
+      <p><strong>Score (Net):</strong> <%= @round.score_net %></p>
+    </div>
   </div>
-
-  <div class="col-md-9">
-    <% @round.holescores.each do |holescore| %>
-      <div class="col-xs-2 col-md-2">
-          <h4><strong><u>Hole #<%= holescore.hole.number %></u></strong></h4>
-          <p><strong>Par:</strong> <%= holescore.hole.par %></p>
-          <p><strong>Handicap:</strong> <%= holescore.hole.handicap %></p>
-          <p><strong>Yardage:</strong> <%= holescore.hole.yards %></p>
-          <p><strong>Score (Gross): <u><%= holescore.score_gross %></u></strong></p>
-          <p><strong>Score (Net): <u><%= holescore.score_net %></u></strong></p>
-      </div>
-    <% end %>
+  <div class="row">
+    <div class="col-xs-3 col-md-6 col-lg-12">
+      <% @round.holescores.each do |holescore| %>
+        <div class="col-xs-4 col-md-2 col-lg-2">
+            <h4><strong><u>Hole #<%= holescore.hole.number %></u></strong></h4>
+            <p><strong>Par:</strong> <%= holescore.hole.par %></p>
+            <p><strong>Handicap:</strong> <%= holescore.hole.handicap %></p>
+            <p><strong>Yardage:</strong> <%= holescore.hole.yards %></p>
+            <p><strong>Score (Gross): <u><%= holescore.score_gross %></u></strong></p>
+            <p><strong>Score (Net): <u><%= holescore.score_net %></u></strong></p>
+        </div>
+      <% end %>
   </div>
 </div>

@@ -17,36 +17,40 @@
 </h1>
 <h2><%= @round.player.name + ": " + @round.date.to_s %></h2>
 
-<div class="container-fluid"><div class="row">
-  <div class="col-xs-2 col-md-2">
-    <%= form_for @round do |form| %>
-      <p><strong>Course Handicap:</strong> <%= @round.course_handicap %></p>
-      <div class="form-group">
-        <%= form.label :strokes_earned, "Strokes Given:" %>
-        <%= form.text_field :strokes_earned, class: "form-control" %>
-      </div>
-      <%= form.button 'Submit', class: "btn btn-mini btn-success" %>
-      <p><strong>Score (Gross):</strong> <%= @round.score_gross %></p>
-      <p><strong>Score (Net):</strong> <%= @round.score_net %></p>
-    <% end %>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-xs-2 col-md-2">
+      <%= form_for @round do |form| %>
+        <p><strong>Course Handicap:</strong> <%= @round.course_handicap %></p>
+        <div class="form-group">
+          <%= form.label :strokes_earned, "Strokes Given:" %>
+          <%= form.number_field :strokes_earned, class: "form-control", step: 0.5 %>
+        </div>
+        <%= form.button 'Submit', class: "btn btn-mini btn-success" %>
+        <p><strong>Score (Gross):</strong> <%= @round.score_gross %></p>
+        <p><strong>Score (Net):</strong> <%= @round.score_net %></p>
+      <% end %>
+    </div>
   </div>
 
-  <div class="col-md-9">
-    <% @round.holescores.each do |holescore| %>
-      <div class="col-xs-2 col-md-2">
-          <h4><strong><u>Hole #<%= holescore.hole.number %></u></strong></h4>
-          <p><strong>Par:</strong> <%= holescore.hole.par %></p>
-          <p><strong>Handicap:</strong> <%= holescore.hole.handicap %></p>
-          <p><strong>Yardage:</strong> <%= holescore.hole.yards %></p>
-          <%= form_for holescore do |form| %>
-            <div class="form-group">
-              <%= form.label :score_gross, "Score (Gross):" %>
-              <%= form.text_field :score_gross, class: "form-control" %>
-            </div>
-            <%= form.button 'Submit', class: "btn btn-mini btn-success" %>
-          <% end %>
-          <p><strong>Score (Net): <u><%= holescore.score_net %></u></strong></p>
-      </div>
-    <% end %>
+  <div class="row">
+    <div class="col-xs-3 col-md-6 col-lg-12">
+      <% @round.holescores.each do |holescore| %>
+        <div class="col-xs-2 col-md-2">
+            <h4><strong><u>Hole #<%= holescore.hole.number %></u></strong></h4>
+            <p><strong>Par:</strong> <%= holescore.hole.par %></p>
+            <p><strong>Handicap:</strong> <%= holescore.hole.handicap %></p>
+            <p><strong>Yardage:</strong> <%= holescore.hole.yards %></p>
+            <%= form_for holescore do |form| %>
+              <div class="form-group">
+                <%= form.label :score_gross, "Score (Gross):" %>
+                <%= form.number_field :score_gross, class: "form-control" %>
+              </div>
+              <%= form.button 'Submit', class: "btn btn-mini btn-success" %>
+            <% end %>
+            <p><strong>Score (Net): <u><%= holescore.score_net %></u></strong></p>
+        </div>
+      <% end %>
+    </div>
   </div>
 </div>

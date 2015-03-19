@@ -14,6 +14,11 @@ class CoursesController < ApplicationController
   def new
     @course = Course.new
     18.times { @course.holes.build }
+    i = 1
+    @course.holes.each do |hole|
+      hole.number = i
+      i += 1
+    end
   end
 
   def create

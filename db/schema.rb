@@ -68,13 +68,15 @@ ActiveRecord::Schema.define(version: 0) do
     t.integer  "course_handicap"
     t.integer  "score_gross"
     t.integer  "score_net"
-    t.integer  "strokes_earned"
+    t.float    "strokes_earned"
     t.date     "date"
     t.datetime "datetime"
     t.integer  "league_id"
+    t.integer  "group_id"
   end
 
   add_index "rounds", ["course_id"], name: "index_rounds_on_course_id"
+  add_index "rounds", ["group_id"], name: "index_rounds_on_group_id"
   add_index "rounds", ["league_id"], name: "index_rounds_on_league_id"
   add_index "rounds", ["player_id"], name: "index_rounds_on_player_id"
 

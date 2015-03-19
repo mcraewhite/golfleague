@@ -53,7 +53,7 @@ class HolescoresController < ApplicationController
     round_score_net = 0
     score_gross = params[:holescore][:score_gross].to_i
     score_net = params[:holescore][:score_gross].to_i
-    if @round.strokes_earned >= @holescore.hole.handicap
+    if @round.strokes_earned >= @holescore.hole.handicap - 0.5
       score_net -= 1
     end
     @holescore.update(score_gross: score_gross, score_net: score_net)

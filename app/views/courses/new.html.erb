@@ -21,40 +21,34 @@
   </div>
   <div class="form-group">
     <%= form.label :slope %>
-    <%= form.text_field :slope, class: "form-control" %>
+    <%= form.number_field :slope, class: "form-control" %>
   </div>
   <div class="form-group">
     <%= form.label :rating %>
-    <%= form.text_field :rating, class: "form-control" %>
+    <%= form.number_field :rating, class: "form-control", step: 0.1 %>
   </div>
-  </br>
   <h3>Holes:</h3>
     <ul>
-      <!-- <% hole_num = 1 %> -->
       <%= form.fields_for :holes do |hole| %>
           <div class="container-fluid">
             <div class="row">
               <div class="col-xs-4 col-md-4">
-              <!-- <h4>Hole #<%= hole_num %>:</h4> -->
-                <!-- <%= hole.hidden_field :number, value: hole_num %> -->
                 <!-- <div class="form-group"> -->
                   <%= hole.label :number %>
-                  <%= hole.text_field :number, class: "form-control" %> 
+                  <%= hole.text_field :number, class: "form-control", readonly: true %> 
                 <!-- </div> -->
                 <!-- <div class="form-group"> -->
                   <%= hole.label :yards %>
-                  <%= hole.text_field :yards, class: "form-control" %>
+                  <%= hole.number_field :yards, class: "form-control" %>
                 <!-- </div> -->
                 <!-- <div class="form-group"> -->
                   <%= hole.label :par %>
-                  <%= hole.text_field :par, class: "form-control" %>
+                  <%= hole.number_field :par, class: "form-control" %>
                 <!-- </div> -->
                 <!-- <div class="form-group"> -->
                   <%= hole.label :handicap %>
-                  <%= hole.text_field :handicap, class: "form-control" %>
+                  <%= hole.number_field :handicap, class: "form-control" %>
                 <!-- </div> -->
-                <!--
-                <%= hole.hidden_field :number_validation, value: "course" + @course.id.to_s + " - hole: " + hole_num.to_s %> -->
               </div>
             </div>
           </div>
