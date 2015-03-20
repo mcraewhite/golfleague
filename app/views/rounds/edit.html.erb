@@ -19,7 +19,7 @@
 
 <div class="container-fluid">
   <div class="row">
-    <div class="col-sm-4 col-md-2">
+    <div class="col-xs-12 col-md-12">
       <%= form_for @round do |form| %>
         <p><strong>Course Handicap:</strong> <%= @round.course_handicap %></p>
         <div class="form-group">
@@ -34,9 +34,9 @@
   </div>
 
   <div class="row">
-    <div class="col-sm-3 col-md-6 col-lg-12">
+    <div class="col-xs-12 col-md-12">
       <% @round.holescores.order(:id).each do |holescore| %>
-        <div class="col-xs-2 col-md-2">
+        <div class="col-xs-4 col-md-2">
             <h4><strong><u>Hole #<%= holescore.hole.number %></u></strong></h4>
             <p><strong>Par:</strong> <%= holescore.hole.par %></p>
             <p><strong>Handicap:</strong> <%= holescore.hole.handicap %></p>
