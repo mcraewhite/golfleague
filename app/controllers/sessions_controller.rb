@@ -1,6 +1,7 @@
 class SessionsController < ApplicationController
   layout false
   skip_before_action :require_user
+  skip_before_filter :set_breadcrumbs
 
   def create
     # params["email"] => the email address
@@ -12,9 +13,9 @@ class SessionsController < ApplicationController
     user = User.find_by(email: params["email"])
     if user && user.authenticate(params["password"])
       session["user_id"] = user.id
-      redirect_to root_path, notice: "Sweet, you're in!"
+      redirect_to session[:breadcrumbs][-1], notice: "Sweet, you're in!"
     else
-      redirect_to root_path, alert: "No way man."
+      redirect_to session[:breadcrumbs][-1], alert: "No way man."
     end
 
   end

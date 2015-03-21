@@ -24,6 +24,14 @@
 
   <div class="container">
 
+    <!-- Alerts -->
+    <% if notice %>
+      <div class="alert alert-success" role="alert"><%= notice %></div>
+    <% end %>
+    <% if alert %>
+      <div class="alert alert-danger" role="alert"><%= alert %></div>
+    <% end %>
+
     <%= form_tag sessions_path, class: "form-signin" do %>
       <h1>The Golf League</h1>
       <h2 class="form-signin-heading">Please sign in</h2>
