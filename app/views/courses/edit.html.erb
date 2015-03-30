@@ -1,0 +1,64 @@
+<% if @course.errors.any? %>
+  <div class="alert alert-warning">
+    <h2>Some errors kept this course from being saved:</h2>
+    <ul>
+      <% @course.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= form_for @course do |form| %>
+  <h3>Course Info:</h3>
+  <div class="form-group">
+    <%= form.label :name %>
+    <%= form.text_field :name, class: "form-control" %>
+  </div>
+  <h3>Tees:</h3>
+    <ul>
+      <%= form.fields_for :teesets do |teeset| %>
+      <% puts "#{ teeset }" %>
+        <div class="form-group">
+          <%= teeset.label :name, "Tee Name" %>
+          <%= teeset.text_field :name, class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <%= teeset.label :yards %>
+          <%= teeset.number_field :yards, class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <%= teeset.label :slope %>
+          <%= teeset.number_field :slope, class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <%= teeset.label :rating %>
+          <%= teeset.number_field :rating, class: "form-control", step: 0.1 %>
+        </div>
+      <% end %>
+    </ul>
+  <h3>Holes:</h3>
+    <ul>
+      <%= form.fields_for :holes do |hole| %>
+        <div class="form-group">
+          <%= hole.label :number %>
+          <%= hole.text_field :number, class: "form-control", readonly: true %> 
+        </div>
+        <%= hole.fields_for :tees do |tee| %>
+          <div class="form-group">
+            <%= tee.label :yards %>
+            <%= tee.number_field :yards, class: "form-control" %>
+          </div>
+          <div class="form-group">
+            <%= tee.label :par %>
+            <%= tee.number_field :par, class: "form-control" %>
+          </div>
+          <div class="form-group">
+            <%= tee.label :handicap %>
+            <%= tee.number_field :handicap, class: "form-control" %>
+          </div>
+        <% end %>
+      <% end %>
+    </ul>
+  <%= form.button 'Create Course', class: "btn btn-success" %>
+<% end %>
