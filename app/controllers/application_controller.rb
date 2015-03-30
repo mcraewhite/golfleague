@@ -25,7 +25,6 @@ class ApplicationController < ActionController::Base
     end
 
     @breadcrumbs.push(request.url)
-    puts "breadcrumb: " + request.url
 
     if @breadcrumbs.count > 4
       @breadcrumbs.shift

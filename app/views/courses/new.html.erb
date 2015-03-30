@@ -15,43 +15,49 @@
     <%= form.label :name %>
     <%= form.text_field :name, class: "form-control" %>
   </div>
-  <div class="form-group">
-    <%= form.label :logo, "Logo (enter the filename)" %>
-    <%= form.text_field :logo, class: "form-control" %>
-  </div>
-  <div class="form-group">
-    <%= form.label :slope %>
-    <%= form.number_field :slope, class: "form-control" %>
-  </div>
-  <div class="form-group">
-    <%= form.label :rating %>
-    <%= form.number_field :rating, class: "form-control", step: 0.1 %>
-  </div>
+  <h3>Tees:</h3>
+    <ul>
+      <%= form.fields_for :teesets do |teeset| %>
+      <% puts "#{ teeset }" %>
+        <div class="form-group">
+          <%= teeset.label :name, "Tee Name" %>
+          <%= teeset.text_field :name, class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <%= teeset.label :yards %>
+          <%= teeset.number_field :yards, class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <%= teeset.label :slope %>
+          <%= teeset.number_field :slope, class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <%= teeset.label :rating %>
+          <%= teeset.number_field :rating, class: "form-control", step: 0.1 %>
+        </div>
+      <% end %>
+    </ul>
   <h3>Holes:</h3>
     <ul>
       <%= form.fields_for :holes do |hole| %>
-          <div class="container-fluid">
-            <div class="row">
-              <div class="col-xs-4 col-md-4">
-                <!-- <div class="form-group"> -->
-                  <%= hole.label :number %>
-                  <%= hole.text_field :number, class: "form-control", readonly: true %> 
-                <!-- </div> -->
-                <!-- <div class="form-group"> -->
-                  <%= hole.label :yards %>
-                  <%= hole.number_field :yards, class: "form-control" %>
-                <!-- </div> -->
-                <!-- <div class="form-group"> -->
-                  <%= hole.label :par %>
-                  <%= hole.number_field :par, class: "form-control" %>
-                <!-- </div> -->
-                <!-- <div class="form-group"> -->
-                  <%= hole.label :handicap %>
-                  <%= hole.number_field :handicap, class: "form-control" %>
-                <!-- </div> -->
-              </div>
-            </div>
+        <div class="form-group">
+          <%= hole.label :number %>
+          <%= hole.text_field :number, class: "form-control", readonly: true %> 
+        </div>
+        <%= hole.fields_for :tees do |tee| %>
+          <div class="form-group">
+            <%= tee.label :yards %>
+            <%= tee.number_field :yards, class: "form-control" %>
           </div>
+          <div class="form-group">
+            <%= tee.label :par %>
+            <%= tee.number_field :par, class: "form-control" %>
+          </div>
+          <div class="form-group">
+            <%= tee.label :handicap %>
+            <%= tee.number_field :handicap, class: "form-control" %>
+          </div>
+        <% end %>
       <% end %>
     </ul>
   <%= form.button 'Create Course', class: "btn btn-success" %>

@@ -1,0 +1,23 @@
+
+<h1 class="title">
+  <%= @rounds.first.league.name + ": " + @group.date.to_s %>
+  <span class="pull-right">
+    <%= link_to "Edit Round", edit_group_path(@group), class: 'btn btn-sm btn-success' %>
+  </span>
+</h1>
+
+
+<div class="container-fluid">
+  <div class="row">
+    <% @group.players.order(:name).each do |player| %>
+      <div class="col-xs-12 col-md-6 col-lg-3">
+        <p><strong>Player:</strong> <%= player.name %></p>
+        <% round = @rounds.find_by(player_id: player.id) %>
+        <p><strong>Course:</strong> <%= round.course.name %></p>
+        <p><strong>Strokes Given:</strong> <%= round.strokes_earned %></p>
+        <p><strong>Score (Gross):</strong> <%= round.score_gross %></p>
+        <p><strong>Score (Net):</strong> <%= round.score_net %></p>
+      </div>
+    <% end %>
+  </div>
+</div>

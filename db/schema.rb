@@ -14,18 +14,17 @@
 ActiveRecord::Schema.define(version: 0) do
 
   create_table "courses", force: :cascade do |t|
-    t.string  "name"
-    t.string  "logo"
-    t.integer "slope"
-    t.float   "rating"
+    t.string "name"
+  end
+
+  create_table "groups", force: :cascade do |t|
+    t.date     "date"
+    t.datetime "datetime"
   end
 
   create_table "holes", force: :cascade do |t|
     t.integer "course_id"
     t.integer "number"
-    t.integer "handicap"
-    t.integer "par"
-    t.integer "yards"
   end
 
   add_index "holes", ["course_id"], name: "index_holes_on_course_id"
@@ -35,10 +34,12 @@ ActiveRecord::Schema.define(version: 0) do
     t.integer "round_id"
     t.integer "score_gross"
     t.integer "score_net"
+    t.integer "tee_id"
   end
 
   add_index "holescores", ["hole_id"], name: "index_holescores_on_hole_id"
   add_index "holescores", ["round_id"], name: "index_holescores_on_round_id"
+  add_index "holescores", ["tee_id"], name: "index_holescores_on_tee_id"
 
   create_table "leagues", force: :cascade do |t|
     t.string "name"
@@ -73,12 +74,35 @@ ActiveRecord::Schema.define(version: 0) do
     t.datetime "datetime"
     t.integer  "league_id"
     t.integer  "group_id"
+    t.integer  "teeset_id"
   end
 
   add_index "rounds", ["course_id"], name: "index_rounds_on_course_id"
   add_index "rounds", ["group_id"], name: "index_rounds_on_group_id"
   add_index "rounds", ["league_id"], name: "index_rounds_on_league_id"
   add_index "rounds", ["player_id"], name: "index_rounds_on_player_id"
+  add_index "rounds", ["teeset_id"], name: "index_rounds_on_teeset_id"
+
+  create_table "tees", force: :cascade do |t|
+    t.integer "hole_id"
+    t.integer "handicap"
+    t.integer "par"
+    t.integer "yards"
+    t.integer "teeset_id"
+  end
+
+  add_index "tees", ["hole_id"], name: "index_tees_on_hole_id"
+  add_index "tees", ["teeset_id"], name: "index_tees_on_teeset_id"
+
+  create_table "teesets", force: :cascade do |t|
+    t.integer "course_id"
+    t.string  "name"
+    t.integer "yards"
+    t.integer "slope"
+    t.float   "rating"
+  end
+
+  add_index "teesets", ["course_id"], name: "index_teesets_on_course_id"
 
   create_table "users", force: :cascade do |t|
     t.string "email"

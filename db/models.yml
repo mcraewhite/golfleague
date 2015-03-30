@@ -1,12 +1,20 @@
 Course:
   name: string
-  logo: string
+
+Teeset:
+  course_id: integer
+  name: string
+  yards: integer
   slope: integer
   rating: float
 
 Hole:
   course_id: integer
   number: integer
+
+Tee:
+  teeset_id: integer
+  hole_id: integer
   handicap: integer
   par: integer
   yards: integer
@@ -16,6 +24,7 @@ Round:
   player_id: integer
   league_id: integer
   group_id: integer
+  teeset_id: integer
   date: date
   datetime: datetime
   course_handicap: integer
@@ -23,9 +32,14 @@ Round:
   score_gross: integer
   score_net: integer
 
+Group:
+  date: date
+  datetime: datetime
+
 Holescore:
   hole_id: integer
   round_id: integer
+  tee_id: integer
   score_gross: integer
   score_net: integer
 

@@ -1,26 +1,35 @@
-<h1 class="title">
-  <%= @course.name %>
-  <span class="pull-right">
-    <%= link_to "Edit Course", edit_course_path(@course), class: 'btn btn-sm btn-success' %>
-  </span>
-</h1>
+<div class="row">
+  <h1 class="title">
+    <%= @course.name %>
+    <span class="pull-right">
+      <%= link_to "Edit Course", edit_course_path(@course), class: 'btn btn-sm btn-success' %>
+    </span>
+  </h1>
+</div>
 
 
-<div class="container-fluid"><div class="row">
-  <div class="col-md-6">
-    <p><%= image_tag @course.logo %>
-      <p><strong>Slope:</strong> <%= @course.slope %></p>
-      <p><strong>Rating:</strong> <%= @course.rating %></p>
-    </p>
-  </div>
-  <div class="col-md-9">
-    <% @holes.each do |hole| %>
-      <div class="col-xs-2 col-md-2">
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-xs-12 col-md-6 col-lg-3">
+      <% @course.teesets.each do |teeset| %>
+        <p><strong>Tee: </strong><%= teeset.name %></p>
+        <p><strong>Yards:</strong> <%= teeset.yards %></p>
+        <p><strong>Slope:</strong> <%= teeset.slope %></p>
+        <p><strong>Rating:</strong> <%= teeset.rating %></p>
+      <% end %>
+    </div>
+    <div class="col-xs-12 col-md-6 col-lg-3">
+      <% @holes.each do |hole| %>
+        <div class="col-xs-12 col-md-3">
           <h3><%= link_to "Hole #" + hole.number.to_s, edit_course_hole_path(@course, hole) %>:</h3>
-          <p><strong>Par:</strong> <%= hole.par %></p>
-          <p><strong>Handicap:</strong> <%= hole.handicap %></p>
-          <p><strong>Yardage:</strong> <%= hole.yards %></p>
-      </div>
-    <% end %>
+          <% hole.tees.each do |tee| %>
+            <p><strong>Tee:</strong> <%= tee.teeset.name %></p>
+            <p><strong>Yards:</strong> <%= tee.yards %></p>
+            <p><strong>Par:</strong> <%= tee.par %></p>
+            <p><strong>Handicap:</strong> <%= tee.handicap %></p>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
   </div>
 </div>

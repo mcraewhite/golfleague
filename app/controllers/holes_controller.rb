@@ -17,8 +17,7 @@ class HolesController < ApplicationController
   end
 
   def create
-    hole_params = params.require(:hole).permit!
-    @hole = @course.holes.create(number: params[:hole][:number], par: params[:hole][:par], yards: params[:hole][:yards], handicap: params[:hole][:handicap], number_validation: "course" + @course.id.to_s + " - hole: " + params[:hole][:number], handicap_validation: "course" + @course.id.to_s + " - hcap: " + params[:hole][:handicap])
+    @hole = @course.holes.create(hole_params)
     if @hole.valid?
       redirect_to new_course_hole_path(@course), notice: "Hole #" + @hole.number.to_s + " added successfully."
     else
@@ -32,7 +31,6 @@ class HolesController < ApplicationController
   end
 
   def update
-    hole_params = params.require(:hole).permit!
     @hole = @course.holes.find_by(id: params["id"])
     @hole.update(hole_params)
     if @hole.valid?
@@ -48,6 +46,15 @@ class HolesController < ApplicationController
     @hole.destroy
     redirect_to holes_path
   end
+
+  private
+    # Using a private method to encapsulate the permissible parameters
+    # is just a good pattern since you'll be able to reuse the same
+    # permit list between create and update. Also, you can specialize
+    # this method with per-user checking of permissible attributes.
+    def hole_params
+      params.require(:hole).permit!
+    end
 
 private
 

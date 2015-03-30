@@ -5,6 +5,7 @@ class Round < ActiveRecord::Base
   belongs_to :group
   has_many :holescores
   has_many :holes, through: :holescores
+  has_many :tees, through: :holescores
 
   accepts_nested_attributes_for :holescores
 

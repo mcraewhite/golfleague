@@ -10,6 +10,9 @@ Rails.application.routes.draw do
   resources :users
   resources :sessions
   resources :holescores
+  resources :groups
+  resources :teesets
+  resources :tees
 
   get "/login", to: "sessions#new"
   get "/logout", to: "sessions#destroy"

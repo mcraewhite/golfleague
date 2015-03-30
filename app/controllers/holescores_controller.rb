@@ -16,7 +16,6 @@ class HolescoresController < ApplicationController
   end
 
   def create
-    holescore_params = params.require(:holescore).permit!
     @holescore = Holescore.create(holescore_params)
     @round = @holescore.round
 
@@ -45,7 +44,6 @@ class HolescoresController < ApplicationController
   end
 
   def update
-    holescore_params = params.require(:holescore).permit!
     @holescore = Holescore.find_by(id: params["id"])
     @round = @holescore.round
 
@@ -56,7 +54,7 @@ class HolescoresController < ApplicationController
     if @round.strokes_earned >= @holescore.hole.handicap - 0.5
       score_net -= 1
     end
-    @holescore.update(score_gross: score_gross, score_net: score_net)
+    @holescore.update(holescore_params)
     if @holescore.valid?
       @round.holescores.each do |holescore|
         round_score_gross += holescore.score_gross
@@ -76,5 +74,14 @@ class HolescoresController < ApplicationController
     @holescore.destroy
     redirect_to holescores_path
   end
+
+  private
+    # Using a private method to encapsulate the permissible parameters
+    # is just a good pattern since you'll be able to reuse the same
+    # permit list between create and update. Also, you can specialize
+    # this method with per-user checking of permissible attributes.
+    def holescore_params
+      params.require(:holescore).permit!
+    end
 
 end

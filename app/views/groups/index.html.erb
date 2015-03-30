@@ -1,0 +1,30 @@
+<h1>
+  Rounds Played:
+  <span class="pull-right">
+    <%= link_to "New Round", new_group_path, class: 'btn btn-md btn-primary' %>
+  </span>
+</h1>
+<div class="row">
+  <% @groups.each do |group| %>
+    <div class="col-sm-6 col-md-4">
+      <div class="thumbnail">
+        <div class="caption">
+          <h2>
+            <%= link_to group.date, group %>
+          </h2>
+          <% group.players.order(:name).each do |player| %>
+            <% @round = Round.find_by(group_id: group.id, player_id: player.id) %>
+            <h4>
+              <%= link_to player.name, player %>
+              <span class="pull-right">
+                <%= link_to "Edit Individual Round", edit_round_path(@round), class: 'btn btn-xs btn-success' %>
+              </span>
+            </h4>
+            <p><strong>Course:</strong> <%= @round.course.name %></p>
+            <p><strong>Score (Net):</strong> <%= @round.score_net %></p>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

@@ -13,9 +13,11 @@ class CoursesController < ApplicationController
 
   def new
     @course = Course.new
+    1.times { @course.teesets.build }
     18.times { @course.holes.build }
     i = 1
     @course.holes.each do |hole|
+      1.times { hole.tees.build }
       hole.number = i
       i += 1
     end
@@ -24,12 +26,7 @@ class CoursesController < ApplicationController
   def create
     @course = Course.create(course_params)
     if @course.valid?
-#      i = 1
-#      @course.holes.each do |hole|
-#        hole.update(number_validation: "course" + @course.id.to_s + " - hole: " + i.to_s, handicap_validation: "course" + @course.id.to_s + " - hcap: " + hole.handicap.to_s)
-#        i += 1
-#      end
-      redirect_to courses_path, notice: "A new course has been added to the database. Please add holes to the course."
+      redirect_to courses_path, notice: "A new course has been added to the database."
     else
       puts "Failure!"
       flash[:alert] = "Something went wrong."

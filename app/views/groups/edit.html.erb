@@ -9,11 +9,11 @@
   </div>
 <% end %>
 
-
+<!--
 <h1 class="title">
   <%= @round.league.name + ": " + @round.course.name %>
   <span class="pull-right">
-    <%= link_to "Finish Editing Round", round_path(@round), class: 'btn btn-sm btn-success' %>
+    <%= link_to "Edit Round", edit_round_path(@round), class: 'btn btn-sm btn-success' %>
   </span>
 </h1>
 <h2><%= @round.player.name + ": " + @round.date.to_s %></h2>
@@ -55,3 +55,12 @@
     </div>
   </div>
 </div>
+-->
+
+<h1 class="title">
+  <%= @round.league.name + ": " + @round.course.name %>
+</h1>
+<h2>
+  <%= @round.player.name + ": " + @round.date.to_s %>
+</h2>
+
